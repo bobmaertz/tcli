@@ -1,9 +1,10 @@
 package main
 
 import (
-    "os"
-    "flag"
-    "github.com/bobmaertz/tcli/internal/version" 
+	"flag"
+	"os"
+
+	"github.com/bobmaertz/tcli/internal/version"
 )
 
 var commands = map[string]func([]string){
@@ -11,25 +12,22 @@ var commands = map[string]func([]string){
 }
 
 func init() {
-    //TODO:  Define flags 
-    flag.Parse()
+	//TODO:  Define flags
+	flag.Parse()
 }
-
 
 func main() {
-    args := flag.Args()
+	args := flag.Args()
 
-    if len(args) < 1 {
-        usage()        
-    }
+	if len(args) < 1 {
+		usage()
+	}
 
-    // Take the first argument as the command to run with the second argument as the argument to the command
-    commands[args[0]](args[1:])
+	// Take the first argument as the command to run with the second argument as the argument to the command
+	commands[args[0]](args[1:])
 }
-
 
 func usage() {
-    flag.Usage()
-    os.Exit(0)
+	flag.Usage()
+	os.Exit(0)
 }
-
